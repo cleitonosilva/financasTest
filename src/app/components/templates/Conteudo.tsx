@@ -1,6 +1,7 @@
 import styles from './Conteudo.module.scss'
 
 interface ConteudoProps {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: any
     className?: string
 }
