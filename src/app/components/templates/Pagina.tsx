@@ -1,9 +1,9 @@
+import { ReactNode } from 'react'
 import styles from './Pagina.module.scss'
 
 interface PaginaProps {
     externa?: boolean
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    children: any
+    children: ReactNode
     className?: string
 }
 
