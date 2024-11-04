@@ -5,7 +5,7 @@ import IconArrowUp from '../../assets/icons/IconArrowUp'
 import { TipoTransacao } from '../../logic/financas/TipoTransacao'
 import Transacao from '../../logic/financas/Transacao'
 import Item from './Item'
-import styles from './index.module.scss'
+import styles from './Index.module.scss'
 
 interface CardProps {
     transacoes: Transacao[]
