@@ -6,9 +6,6 @@ import styles from './Formulario.module.scss';
 import IconArrowDownCircle from '../../assets/icons/IconArrowDownCircle';
 import IconArrowUpCircle from '../../assets/icons/IconArrowUpCircle';
 
-/**
- * Props para o componente Formulário.
- */
 interface FormularioProps {
     salvar?: (transacao: Transacao) => void;
     cancelar?: () => void;
@@ -20,6 +17,7 @@ export default function Formulario({ salvar, cancelar }: FormularioProps) {
 
     const { dados, alterarAtributo } = useFormulario<Transacao>(transacao);
     const [isFormValid, setIsFormValid] = useState(false);
+    const [sugestoesDescricao, setSugestoesDescricao] = useState<string[]>([]);
 
     useEffect(() => {
         const formValido =
@@ -30,25 +28,30 @@ export default function Formulario({ salvar, cancelar }: FormularioProps) {
         setIsFormValid(formValido);
     }, [dados.descricao, dados.valor, dados.categoria, dados.tipo]);
 
-    /**
-     * Lida com o envio do formulário.
-     *
-     * @param {React.FormEvent} e - O evento de envio do formulário.
-     */
+    // Carregar descrições salvas do localStorage ao montar o componente
+    useEffect(() => {
+        const descricoesSalvas = JSON.parse(localStorage.getItem('descricoes') || '[]');
+        setSugestoesDescricao(descricoesSalvas);
+    }, []);
+
+    // Salvar nova descrição no localStorage
+    const salvarDescricaoNoLocalStorage = (descricao: string) => {
+        const descricoesSalvas = JSON.parse(localStorage.getItem('descricoes') || '[]');
+        if (!descricoesSalvas.includes(descricao)) {
+            descricoesSalvas.push(descricao);
+            localStorage.setItem('descricoes', JSON.stringify(descricoesSalvas));
+        }
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (isFormValid) {
+            salvarDescricaoNoLocalStorage(dados.descricao || '');
             salvar?.(dados);
             cancelar?.();
         }
     };
 
-    /**
-     * Formata um valor como moeda.
-     *
-     * @param {number | string} valor - O valor a ser formatado.
-     * @returns {string} O valor formatado como moeda.
-     */
     const formatarMoeda = (valor: number | string) => {
         if (typeof valor === 'string' && valor === '') {
             return '';
@@ -60,14 +63,8 @@ export default function Formulario({ salvar, cancelar }: FormularioProps) {
         });
     };
 
-    /**
-     * Lida com a mudança de valor no campo de valor, formatando-o como moeda.
-     *
-     * @param {React.ChangeEvent<HTMLInputElement>} e - O evento de mudança.
-     */
     const handleValorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const valorEntrada = e.target.value;
-
         let valor = valorEntrada.replace(/\D/g, '');
 
         if (valor === '') {
@@ -92,7 +89,13 @@ export default function Formulario({ salvar, cancelar }: FormularioProps) {
                         placeholder="Nome"
                         value={dados.descricao || ''}
                         onChange={alterarAtributo('descricao')}
+                        list="sugestoesDescricao"
                     />
+                    <datalist id="sugestoesDescricao">
+                        {sugestoesDescricao.map((descricao, index) => (
+                            <option key={index} value={descricao} />
+                        ))}
+                    </datalist>
                 </div>
 
                 <div className={styles.campo}>
