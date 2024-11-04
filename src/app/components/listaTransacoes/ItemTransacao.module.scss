@@ -1,0 +1,91 @@
+.item {
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 16px 32px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+
+    &.itemDesktop {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 30px;
+        align-items: center;
+
+        @media (max-width: 1024px) {
+            grid-template-columns: 1fr 1fr 1fr 1fr 30px; 
+            gap: 10px; 
+            font-size: 14px;
+        }
+
+        @media (max-width: 685px) {
+            display: none;
+        }
+    }
+
+    &.itemMobile {
+        .cardContent {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .infoBlock {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .actionBlock {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0;
+
+            svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        .label {
+            color: #787880;
+            opacity: 0.8;
+        }
+
+        @media (min-width: 686px) {
+            display: none;
+        }
+    }
+}
+
+.acoesCell {
+    text-align: center;
+}
+
+.botaoExcluir {
+    color: #E83F5B;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 730px) {
+        svg {
+            width: 13px;
+            height: 13px;
+        }
+    }
+}
+
+.receita {
+    color: #06D7A5;
+    font-weight: bold;
+}
+
+.despesa {
+    color: #DB3766;
+    font-weight: bold;
+}

@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.titulo {
+    font-size: 16px;
+    color: #787880;
+    font-weight: 400;
+}
+
+.icone {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 500px) {
+        width: 12px;
+    }
+}

@@ -1,0 +1,101 @@
+.formulario {
+    padding: 20px;
+
+    &__titulo {
+        text-align: left;
+        margin-bottom: 20px;
+
+        font: 'roboto';
+        text-align: left;
+        font: normal normal bold 28px/37px Roboto;
+        letter-spacing: 0.73px;
+        color: #4E5555;
+        opacity: 1;
+    }
+}
+
+.campo {
+    margin-bottom: 20px;
+
+    &__input {
+        width: 100%;
+        height: 48px;
+        background: #F7F7F7 0% 0% no-repeat padding-box;
+        border: 1px solid #D9D9D9;
+        border-radius: 7px;
+        opacity: 1;
+        padding: 19px 26px;
+
+        &:focus {
+            outline: none;
+            border-color: #6b46c1;
+        }
+
+        &::placeholder {
+            color: #999;
+        }
+    }
+}
+
+.tipo-transacao {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+
+    &__botao {
+        flex: 1;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        &--ativo {
+            background: #6b46c1;
+            color: white;
+            border-color: #6b46c1;
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+        }
+    }
+}
+
+.formulario__botao_submit {
+    width: 100%;
+    padding: 15px;
+    background: #6b46c1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover {
+        background: #553c9a;
+    }
+
+    &:disabled {
+        background: #ddd;
+        color: #999;
+        cursor: not-allowed;
+    }
+}
+
+.formulario__erro {
+    color: #e63946;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: block;
+}

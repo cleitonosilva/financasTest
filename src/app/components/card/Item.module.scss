@@ -1,0 +1,20 @@
+.card {
+    flex: 1;
+    height: 115px;
+    padding: 24px 32px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05);
+
+    @media (max-width: 500px) {
+        min-width: 250px;
+    }
+}
+
+.cardDestacado {
+    background: #06D6A2;
+
+    .titulo {
+        color: #FFFFFFE6;
+    }
+}
